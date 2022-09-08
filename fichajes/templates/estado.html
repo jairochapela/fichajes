@@ -5,5 +5,14 @@ Estado de fichaje
 {% block contenido %}
     <h1 data-aos="fade-in">Estado de fichaje de {{fichaje.usuario}}</h1>
     <p data-aos="slide-up">Entrada: {{fichaje.entrada}}</p>
+    {% if fichaje.salida %}
     <p data-aos="slide-up">Salida: {{fichaje.salida}}</p>
+    {% else %}
+    <p data-aos="slide-up">(Aún no hay fichaje de salida.)</p>
+    {% endif %}
+    <script>
+        setTimeout(function () {
+            window.location = "{% url 'portada' %}";
+        }, 15000);
+    </script>
 {% endblock %}
