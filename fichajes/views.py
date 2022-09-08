@@ -19,16 +19,22 @@ class EntradaView(View):
 
     # Envío de datos del formulario    
     def post(self, request):
-        fichaje = Fichaje(entrada=datetime.now())
-        formulario = EntradaForm(request.POST, 
-                                instance=fichaje)
-        if formulario.is_valid():
-            fichaje = formulario.save()
-            return redirect('estado', fichaje.usuario_id)
-        else:
-            formulario.add_error(error="Datos no válidos")
-            return render('entrada.html',
-                {'formulario':formulario})
+        formulario = EntradaForm(request.POST) 
+        try:
+            usuario_id = request.POST.get('usuario')
+            fichaje = Fichaje.objects.filter(usuario_id=usuario_id).filter(salida=None).order_by('-entrada').first()
+            if fichaje:
+                raise Exception('Ya hay fichaje de entrada activo para ese usuario')            
+            fichaje = Fichaje(entrada=datetime.now())
+            formulario.instance = fichaje
+            if formulario.is_valid():
+                fichaje = formulario.save()
+                return redirect('estado', fichaje.usuario_id)
+            else:
+                raise Exception('Datos no válidos')
+        except Exception as error:
+            formulario.add_error(None, error)
+            return render(request, 'entrada.html', {'formulario':formulario})
 
 
 
