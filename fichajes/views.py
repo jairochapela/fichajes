@@ -54,7 +54,7 @@ class SalidaView(View):
         formulario = SalidaForm(request.POST)
         try:
             usuario_id = request.POST.get('usuario')
-            fichaje = Fichaje.objects.filter(usuario_id=usuario_id).order_by('-entrada').first()
+            fichaje = Fichaje.objects.filter(usuario_id=usuario_id).filter(salida=None).order_by('-entrada').first()
             if not fichaje:
                 raise Exception("No hay fichaje de entrada previo")
             fichaje.salida = datetime.now()
