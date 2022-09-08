@@ -3,8 +3,8 @@
 Fichaje de salida
 {% endblock %}
 {% block contenido %}
-    <h1>Fichaje de salida</h1>
-    <form action="" method="post">
+    <h1 data-aos="fade-in">Fichaje de salida</h1>
+    <form action="" method="post" data-aos="slide-up">
         {{formulario}}
         {% csrf_token %}
         <button type="submit">Fichar</button>
