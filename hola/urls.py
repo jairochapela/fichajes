@@ -18,7 +18,7 @@ from django.urls import path
 from fichajes.views import EntradaView, SalidaView, estado_fichaje, hola
 
 urlpatterns = [
-    path('', hola),
+    path('', hola, name="portada"),
     path('entrada', EntradaView.as_view(), name="entrada"),
     path('salida', SalidaView.as_view(), name="salida"),
     path('estado/<int:usuario_id>', estado_fichaje, name="estado"),

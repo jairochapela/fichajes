@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: white;
+            background-color: black;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 2em;
+        }
+        h1 {
+            color: cyan;
+        }
+        a {
+            color: yellow;
+            margin-right: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'portada' %}">Ir a inicio</a>        
+        <a href="{% url 'entrada' %}">Fichaje de entrada</a>
+        <a href="{% url 'salida' %}">Fichaje de salida</a>    
+    </nav>
+    {% block contenido %}
+    {% endblock %}
+</body>
+</html>

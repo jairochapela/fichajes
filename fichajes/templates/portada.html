@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block titulo %}
+Control de fichajes
+{% endblock %}
+{% block contenido %}
     <h1>¡Hola!</h1>
     <p>Bienvenida/o al sistema de fichajes.</p>
-
-    <a href="{% url 'entrada' %}">Fichaje de entrada</a>
-    <a href="{% url 'salida' %}">Fichaje de salida</a>
-</body>
-</html>
+{% endblock %}
