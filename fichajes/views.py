@@ -7,7 +7,7 @@ from fichajes.models import Fichaje
 
 # Create your views here.
 def hola(request):
-    return render(request, 'portada.html')
+    return render(request, 'portada.html', {'now':datetime.now()})
 
 
 class EntradaView(View):
