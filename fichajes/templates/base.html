@@ -54,6 +54,15 @@
         <a href="{% url 'portada' %}">Ir a inicio</a>        
         <a href="{% url 'entrada' %}">Fichaje de entrada</a>
         <a href="{% url 'salida' %}">Fichaje de salida</a>    
+        <a href="{% url 'fichajes' %}">Mis fichajes</a>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" 
+                    value="{% url 'portada' %}">
+            <button type="submit">Cerrar sesión</button>
+        </form>
+
     </nav>
     {% block contenido %}
     {% endblock %}

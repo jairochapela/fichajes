@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views import View
 from fichajes.forms import EntradaForm, SalidaForm
 from fichajes.models import Fichaje
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def hola(request):
@@ -73,3 +74,13 @@ class SalidaView(View):
         except Exception as error:
             formulario.add_error(None, error)
             return render(request, 'salida.html', {'formulario':formulario})
+
+
+@login_required
+def mis_fichajes(request):
+    fichajes = Fichaje.objects\
+        .filter(usuario=request.user).all()
+    return render(request,'mis_fichajes.html', {
+        'usuario': request.user,
+        'fichajes': fichajes
+    })

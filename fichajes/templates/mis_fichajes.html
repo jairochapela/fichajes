@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Fichajes de {{usuario}}
+{% endblock %}
+
+{% block contenido %}
+<h1>Fichajes de {{usuario}}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Entrada</th>
+            <th>Salida</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for f in fichajes %}
+        <tr>
+            <td>{{f.entrada}}</td>
+            <td>{{f.salida}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
