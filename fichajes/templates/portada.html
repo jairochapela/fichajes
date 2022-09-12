@@ -1,8 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block titulo %}
 Control de fichajes
 {% endblock %}
 {% block contenido %}
     <h1 data-aos="fade-in">¡Hola!</h1>
     <p data-aos="slide-up">Bienvenida/o al sistema de fichajes.</p>
+    
+    <h2 class="display-4" id="timer" data-now="{{ now | date:'U' }}">--:--:--</h2>
+
+
+    <script src="{% static 'fichajes/js/easytimer.min.js' %}"></script>
+    <script>
+        const timerElement = document.getElementById('timer');
+        const now = timerElement.dataset.now;
+        if (now) {
+            //const timeago = now - inicio;
+
+            var timer = new easytimer.Timer();
+            timer.start({precision: 'seconds', startValues: {seconds: now}});
+            timer.addEventListener('secondsUpdated', function (e) {
+                timerElement.innerText = timer.getTimeValues().toString();
+            });
+        }        
+    </script>
 {% endblock %}

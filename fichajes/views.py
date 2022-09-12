@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def hola(request):
-    return render(request, 'portada.html')
+    return render(request, 'portada.html', {'now':datetime.now()})
 
 
 class EntradaView(View):
