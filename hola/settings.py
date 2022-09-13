@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'hola.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fichajes1',
+        'NAME': 'holadb',
         'HOST': '127.0.0.1',
-        'USER': 'jairo',
-        'PASSWORD': 'aaa',
+        'USER': 'root',
+        'PASSWORD': 'abc123.',
         'PORT': '3306'
     }
 }

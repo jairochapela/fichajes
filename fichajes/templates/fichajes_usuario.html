@@ -1,0 +1,30 @@
+{% extends 'admin/base_site.html' %}
+
+{% block content %}
+<h1>Fichajes de {{usuario}}</h1>
+
+<div class="results">
+    <table  style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Entrada</th>
+                <th>Salida</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in fichajes %}
+            <tr>
+                <td>{{f.entrada|date:"d/m/Y H:i"}}</td>
+                <td>
+                    {% if f.salida %}
+                    {{f.salida|date:"d/m/Y H:i"}}
+                    {% else %}
+                    No registrada aún
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

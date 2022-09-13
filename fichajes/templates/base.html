@@ -45,6 +45,13 @@
         button:hover {
             color: black;
             background-color: greenyellow;
+        }
+        table {
+            border: solid 1px;
+        }
+        td {
+            border: solid 1px;
+            padding: 8px;
         }        
     </style>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />    
@@ -55,13 +62,16 @@
         <a href="{% url 'entrada' %}">Fichaje de entrada</a>
         <a href="{% url 'salida' %}">Fichaje de salida</a>    
         <a href="{% url 'fichajes' %}">Mis fichajes</a>
+        <a href="{% url 'admin:index' %}">Administración</a>
 
+        {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="next" 
                     value="{% url 'portada' %}">
             <button type="submit">Cerrar sesión</button>
         </form>
+        {% endif %}
 
     </nav>
     {% block contenido %}

@@ -17,8 +17,14 @@ Fichajes de {{usuario}}
     <tbody>
         {% for f in fichajes %}
         <tr>
-            <td>{{f.entrada}}</td>
-            <td>{{f.salida}}</td>
+            <td>{{f.entrada|date:"d/m/Y H:i"}}</td>
+            <td>
+                {% if f.salida %}
+                {{f.salida|date:"d/m/Y H:i"}}
+                {% else %}
+                No registrada aún
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>

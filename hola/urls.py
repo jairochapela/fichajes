@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from fichajes.views import EntradaView, SalidaView, estado_fichaje, hola, mis_fichajes
+from fichajes.views import EntradaView, SalidaView, estado_fichaje, fichajes_de_usuario, hola, mis_fichajes
 
 urlpatterns = [
     path('', hola, name="portada"),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('estado/<int:usuario_id>', estado_fichaje, name="estado"),
     path('admin/', admin.site.urls),
     path('fichajes', mis_fichajes, name='fichajes'),
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('fichajes_usuario/<int:usuario_id>', fichajes_de_usuario, name='fichajes_de_usuario')
 ]

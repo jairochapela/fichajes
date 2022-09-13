@@ -5,6 +5,8 @@ from django.views import View
 from fichajes.forms import EntradaForm, SalidaForm
 from fichajes.models import Fichaje
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.models import User
 
 # Create your views here.
 def hola(request):
@@ -80,7 +82,18 @@ class SalidaView(View):
 def mis_fichajes(request):
     fichajes = Fichaje.objects\
         .filter(usuario=request.user).all()
-    return render(request,'mis_fichajes.html', {
+    return render(request, 'mis_fichajes.html', {
         'usuario': request.user,
+        'fichajes': fichajes
+    })
+
+
+@staff_member_required
+def fichajes_de_usuario(request, usuario_id):
+    usuario = User.objects.get(pk=usuario_id)
+    fichajes = Fichaje.objects\
+        .filter(usuario=usuario).all()
+    return render(request,'fichajes_usuario.html',{
+        'usuario': usuario,
         'fichajes': fichajes
     })
